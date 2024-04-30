@@ -10,6 +10,7 @@ on:
     branches: [ "master" ]
 
 env:
+  IMAGE_NAME: "recipe-app"
   BUILD_IMAGE_NAME: "tomekskr/recipe-app"
   TMP_IMAGE_PATH: "/tmp/recipe-app.tar"
 jobs:
@@ -46,7 +47,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.BUILD_IMAGE_NAME }}
+        name: ${{ env.IMAGE_NAME }}
         path: ${{ env.TMP_IMAGE_PATH }}
   docker_push:
     runs-on: ubuntu-latest
@@ -55,9 +56,9 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
-          name: ${{ env.TMP_IMAGE_PATH }}
+          name: ${{ env.IMAGE_NAME }}
           path: /tmp
       - name: Load image
         run: |
-          docker load --input ${{ env.TMP_IMAGE_PATH }}
+          docker load --input ${{ env.TMP_IMAGE_PAT }}
           docker image ls -a       
