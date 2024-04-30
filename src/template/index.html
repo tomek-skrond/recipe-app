@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe App</title>
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+h2 {
+    color: #007bff;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"], button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.ingredients {
+    margin-bottom: 20px;
+}
+
+.ingredient {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.ingredient input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+}
+
+#recipes {
+    margin-top: 20px;
+}
+
+.recipe {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.recipe p {
+    margin: 0;
+}
+
+.recipe ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.recipe ul li {
+    list-style-type: none;
+}
+
+.recipe h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.recipe-details {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+
+.recipe-details p {
+    margin-bottom: 5px;
+}
+.recipe-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#recipes {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping to create multiple rows */
+    justify-content: space-around; /* Distribute items evenly with space around */
+}
+
+.recipe-button {
+    width: 200px; /* Set a fixed width for square buttons */
+    height: 200px; /* Set a fixed height for square buttons */
+    background-color: #3498db;
+    color: white;
+    font-size: 18px;
+    padding: 20px;
+    margin: 10px; /* Add margin to create gaps between buttons */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.recipe-button:hover {
+    background-color: #2980b9;
+}
+
+
+</style>
+</head>
+</head>
+<body>
+    <h1>Recipe App</h1>
+
+    <!-- Form to enter a new recipe -->
+    <h2>Add New Recipe</h2>
+    <form id="recipeForm">
+        <label for="recipeName">Recipe Name:</label>
+        <input type="text" id="recipeName" name="recipeName" required>
+        <br>
+        <div id="ingredients">
+            <div class="ingredient">
+                <label for="ingredientName1">Ingredient Name:</label>
+                <input type="text" id="ingredientName1" name="ingredientName1" required>
+                <label for="ingredientAmount1">Ingredient Amount:</label>
+                <input type="text" id="ingredientAmount1" name="ingredientAmount1" required>
+            </div>
+        </div>
+        <button id="addIngredientBtn" type="button">Add Ingredient</button>
+        <br>
+        <button type="submit">Add Recipe</button>
+    </form>
+
+    <!-- Display area for existing recipes -->
+    <h2>Recipes</h2>
+    <div id="recipes"></div>
+
+    <script>
+        function getRandomColor() {
+            // Generate random values for red, green, and blue channels
+            const red = Math.floor(Math.random() * 256);
+            const green = Math.floor(Math.random() * 256);
+            const blue = Math.floor(Math.random() * 256);
+            // Construct a CSS color string
+            return `rgb(${red},${green},${blue})`;
+        }
+
+        
+        let ingredientCount = 1;
+
+        // Function to add ingredient input fields
+        function addIngredient() {
+            ingredientCount++;
+            const ingredientsDiv = document.getElementById('ingredients');
+            const newIngredientDiv = document.createElement('div');
+            newIngredientDiv.className = 'ingredient';
+            newIngredientDiv.innerHTML = `
+                <label for="ingredientName${ingredientCount}">Ingredient Name:</label>
+                <input type="text" id="ingredientName${ingredientCount}" name="ingredientName${ingredientCount}" required>
+                <label for="ingredientAmount${ingredientCount}">Ingredient Amount:</label>
+                <input type="text" id="ingredientAmount${ingredientCount}" name="ingredientAmount${ingredientCount}" required>
+            `;
+            ingredientsDiv.appendChild(newIngredientDiv);
+        }
+        function redirectToRecipe(recipeId) {
+            // Redirect to a page showing only the clicked recipe details
+            window.location.href = `/recipe/${recipeId}`;
+        }
+        // Function to fetch and display recipes
+        function getRecipes() {
+            fetch('/v1/recipes')
+                .then(response => response.json())
+                .then(recipes => {
+                    const recipesDiv = document.getElementById('recipes');
+                    recipesDiv.innerHTML = '';
+                    // <h3>ID: ${recipe.id}</h3>
+                    //     <p><strong>Name:</strong> ${recipe.recipe_name}</p>
+                    recipes.forEach(recipe => {
+                        const recipeDiv = document.createElement('div');
+                        recipeDiv.innerHTML = `
+                        <div class="recipe-container">
+                            ${recipes.map(recipe => `
+                                <button class="recipe-button" onclick="redirectToRecipe(${recipe.id})">
+                                    ${recipe.recipe_name}
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        `;
+                        recipesDiv.appendChild(recipeDiv);
+                    });
+                })
+                .catch(error => console.error('Error fetching recipes:', error));
+        }
+
+        // Function to handle form submission and add new recipe
+        function addRecipe(event) {
+    event.preventDefault();
+
+    const recipeName = document.getElementById('recipeName').value;
+
+    // Gather all ingredients from input fields
+    const ingredients = [];
+    for (let i = 1; i <= ingredientCount; i++) {
+        const ingredientName = document.getElementById(`ingredientName${i}`).value;
+        const ingredientAmount = document.getElementById(`ingredientAmount${i}`).value;
+        if (ingredientName && ingredientAmount) {
+            ingredients.push({ name: ingredientName, amount: ingredientAmount });
+        }
+    }
+
+    const recipeData = {
+        recipe_name: recipeName,
+        ingredients: ingredients
+    };
+
+    fetch('/v1/recipes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(recipeData)
+    })
+    .then(response => response.json())
+    .then(response => {
+        console.log('Recipe added successfully:', response);
+        // Fetch and render the updated list of recipes after adding a new one
+        fetchRecipes();
+    })
+    .catch(error => console.error('Error adding recipe:', error));
+}
+
+        function renderRecipes(recipes) {
+            const recipeContainer = document.getElementById('recipes');
+            // Clear the existing recipes
+            recipeContainer.innerHTML = '';
+
+            // Append each recipe button to the container
+            recipes.forEach(recipe => {
+                const recipeButton = document.createElement('button');
+                recipeButton.classList.add('recipe-button');
+                recipeButton.textContent = recipe.recipe_name;
+                recipeButton.onclick = () => redirectToRecipe(recipe.id);
+                recipeContainer.appendChild(recipeButton);
+            });
+        }
+
+
+        // Fetch recipes from the server
+        function fetchRecipes() {
+            fetch('/v1/recipes')
+                .then(response => response.json())
+                .then(recipes => {
+                    renderRecipes(recipes); // Render the fetched recipes
+                })
+                .catch(error => console.error('Error fetching recipes:', error));
+        }
+
+// Call fetchRecipes() to fetch and render recipes when the page loads
+
+        // Add event listener for form submission
+        document.getElementById('recipeForm').addEventListener('submit', addRecipe);
+
+        // Add event listener for "Add Ingredient" button
+        document.getElementById('addIngredientBtn').addEventListener('click', addIngredient);
+
+        // Initial fetch to display existing recipes
+        getRecipes();
+        fetchRecipes();
+
+    </script>
+</body>
+</html>

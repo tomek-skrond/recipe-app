@@ -1,0 +1,142 @@
+[
+    {
+      "recipe_name": "Chocolate Cake",
+      "ingredients": [
+        {"name": "Flour", "amount": "2 cups"},
+        {"name": "Sugar", "amount": "1.5 cups"},
+        {"name": "Cocoa powder", "amount": "0.75 cups"},
+        {"name": "Baking powder", "amount": "1.5 tsp"},
+        {"name": "Baking soda", "amount": "1.5 tsp"},
+        {"name": "Salt", "amount": "1 tsp"},
+        {"name": "Eggs", "amount": "2"},
+        {"name": "Milk", "amount": "1 cup"},
+        {"name": "Vegetable oil", "amount": "0.5 cup"},
+        {"name": "Vanilla extract", "amount": "2 tsp"},
+        {"name": "Boiling water", "amount": "1 cup"}
+      ]
+    },
+    {
+      "recipe_name": "Chicken Alfredo Pasta",
+      "ingredients": [
+        {"name": "Fettuccine pasta", "amount": "8 oz"},
+        {"name": "Chicken breast", "amount": "2"},
+        {"name": "Butter", "amount": "0.5 cup"},
+        {"name": "Heavy cream", "amount": "1 cup"},
+        {"name": "Parmesan cheese", "amount": "1 cup"},
+        {"name": "Garlic cloves", "amount": "2"},
+        {"name": "Salt", "amount": "1 tsp"},
+        {"name": "Black pepper", "amount": "0.5 tsp"},
+        {"name": "Parsley", "amount": "2 tbsp"}
+      ]
+    },
+    {
+      "recipe_name": "Spaghetti Bolognese",
+      "ingredients": [
+        {"name": "Spaghetti", "amount": "8 oz"},
+        {"name": "Ground beef", "amount": "1 lb"},
+        {"name": "Onion", "amount": "1"},
+        {"name": "Garlic cloves", "amount": "2"},
+        {"name": "Tomato sauce", "amount": "2 cups"},
+        {"name": "Dried oregano", "amount": "1 tsp"},
+        {"name": "Dried basil", "amount": "1 tsp"},
+        {"name": "Salt", "amount": "1 tsp"},
+        {"name": "Black pepper", "amount": "0.5 tsp"},
+        {"name": "Parmesan cheese", "amount": "0.5 cup"}
+      ]
+    },
+    {
+      "recipe_name": "Caesar Salad",
+      "ingredients": [
+        {"name": "Romaine lettuce", "amount": "1 head"},
+        {"name": "Croutons", "amount": "1 cup"},
+        {"name": "Parmesan cheese", "amount": "0.5 cup"},
+        {"name": "Caesar dressing", "amount": "0.5 cup"},
+        {"name": "Lemon juice", "amount": "2 tbsp"},
+        {"name": "Olive oil", "amount": "2 tbsp"},
+        {"name": "Worcestershire sauce", "amount": "1 tsp"},
+        {"name": "Dijon mustard", "amount": "1 tsp"},
+        {"name": "Garlic clove", "amount": "1"},
+        {"name": "Anchovy fillets", "amount": "2"}
+      ]
+    },
+    {
+      "recipe_name": "Margherita Pizza",
+      "ingredients": [
+        {"name": "Pizza dough", "amount": "1 lb"},
+        {"name": "Tomato sauce", "amount": "1 cup"},
+        {"name": "Fresh mozzarella cheese", "amount": "8 oz"},
+        {"name": "Fresh basil leaves", "amount": "1/4 cup"},
+        {"name": "Olive oil", "amount": "2 tbsp"},
+        {"name": "Salt", "amount": "1/2 tsp"},
+        {"name": "Black pepper", "amount": "1/4 tsp"}
+      ]
+    },
+    {
+      "recipe_name": "Guacamole",
+      "ingredients": [
+        {"name": "Avocado", "amount": "2"},
+        {"name": "Lime", "amount": "1"},
+        {"name": "Red onion", "amount": "1/2"},
+        {"name": "Tomato", "amount": "1"},
+        {"name": "Cilantro", "amount": "2 tbsp"},
+        {"name": "Garlic clove", "amount": "1"},
+        {"name": "Salt", "amount": "1/2 tsp"},
+        {"name": "Black pepper", "amount": "1/4 tsp"}
+      ]
+    },
+    {
+      "recipe_name": "Pancakes",
+      "ingredients": [
+        {"name": "Flour", "amount": "1 cup"},
+        {"name": "Milk", "amount": "1 cup"},
+        {"name": "Egg", "amount": "1"},
+        {"name": "Baking powder", "amount": "2 tsp"},
+        {"name": "Sugar", "amount": "2 tbsp"},
+        {"name": "Salt", "amount": "1/2 tsp"},
+        {"name": "Butter", "amount": "2 tbsp (melted)"}
+      ]
+    },
+    {
+      "recipe_name": "Tomato Basil Soup",
+      "ingredients": [
+        {"name": "Tomatoes", "amount": "2 lbs"},
+        {"name": "Onion", "amount": "1"},
+        {"name": "Garlic cloves", "amount": "2"},
+        {"name": "Vegetable broth", "amount": "4 cups"},
+        {"name": "Tomato paste", "amount": "2 tbsp"},
+        {"name": "Fresh basil leaves", "amount": "1/2 cup"},
+        {"name": "Sugar", "amount": "1 tsp"},
+        {"name": "Salt", "amount": "1 tsp"},
+        {"name": "Black pepper", "amount": "1/4 tsp"}
+      ]
+    },
+    {
+      "recipe_name": "Tuna Salad",
+      "ingredients": [
+        {"name": "Canned tuna", "amount": "1 can"},
+        {"name": "Celery", "amount": "2 stalks"},
+        {"name": "Red onion", "amount": "1/4 cup"},
+        {"name": "Mayonnaise", "amount": "1/4 cup"},
+        {"name": "Lemon juice", "amount": "1 tbsp"},
+        {"name": "Dijon mustard", "amount": "1 tsp"},
+        {"name": "Salt", "amount": "1/4 tsp"},
+        {"name": "Black pepper", "amount": "1/4 tsp"}
+      ]
+    },
+    {
+      "recipe_name": "Vegetarian Chili",
+      "ingredients": [
+        {"name": "Kidney beans", "amount": "1 can"},
+        {"name": "Black beans", "amount": "1 can"},
+        {"name": "Diced tomatoes", "amount": "1 can"},
+        {"name": "Corn kernels", "amount": "1 cup"},
+        {"name": "Onion", "amount": "1"},
+        {"name": "Garlic cloves", "amount": "2"},
+        {"name": "Chili powder", "amount": "2 tbsp"},
+        {"name": "Cumin", "amount": "1 tbsp"},
+        {"name": "Olive oil", "amount": "2 tbsp"},
+        {"name": "Salt", "amount": "1 tsp"},
+        {"name": "Black pepper", "amount": "1/2 tsp"}
+      ]
+    }
+  ]

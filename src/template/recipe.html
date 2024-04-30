@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .recipe-details {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="recipe-details">
+        <h1>Recipe Details</h1>
+        <h2>ID: {{.ID}}</h2>
+        <h2>Name: {{.Name}}</h2>
+        <h2>Ingredients:</h2>
+        <ul>
+            {{range .Ingredients}}
+            <li>{{.Name}} - {{.Amount}}</li>
+            {{end}}
+        </ul>
+    </div>
+</body>
+</html>
