@@ -1,13 +1,6 @@
 name: Go
 
 on:
-  workflow_dispatch:
-    inputs:
-      image_version:
-        description: 'App image version'
-        required: true
-        default: '1.0.0'
-        
   push:
     branches: [ "master","dev","staging" ]
   pull_request:
@@ -55,7 +48,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: src/
-        tags: ${{ env.BUILD_IMAGE_NAME}}:latest,${{ env.BUILD_IMAGE_NAME}}:${{ github.ref_name }}-latest,${{ env.BUILD_IMAGE_NAME }}:${{ github.ref_name }}-${{ github.event.inputs.image_version }}
+        tags: ${{ env.BUILD_IMAGE_NAME }}:latest,${{ env.BUILD_IMAGE_NAME }}:${{ github.ref_name }}-latest,
         outputs: type=docker,dest=/tmp/recipe-app.tar
     - name: Upload artifact
       uses: actions/upload-artifact@v4
