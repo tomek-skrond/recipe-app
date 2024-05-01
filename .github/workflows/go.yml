@@ -50,7 +50,7 @@ jobs:
       with:
         context: src/
         tags: ${{ env.BUILD_IMAGE_NAME }}:latest,${{ env.BUILD_IMAGE_NAME }}:${{ github.ref_name }}-latest,
-        outputs: type=docker,dest=/tmp/artifacts/recipe-app.tar
+        outputs: type=docker,dest=/tmp/artifacts/
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
