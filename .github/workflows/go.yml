@@ -55,7 +55,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: src/
-        tags: ${{ env.BUILD_IMAGE_NAME}}:latest,${{ env.BUILD_IMAGE_NAME }}:${{ github.event.inputs.image_version }}
+        tags: ${{ env.BUILD_IMAGE_NAME}}:latest,${{ env.BUILD_IMAGE_NAME}}:${{ github.ref_name }}-latest,${{ env.BUILD_IMAGE_NAME }}:${{ github.ref_name }}-${{ github.event.inputs.image_version }}
         outputs: type=docker,dest=/tmp/recipe-app.tar
     - name: Upload artifact
       uses: actions/upload-artifact@v4
