@@ -8,6 +8,8 @@ import (
 	"strconv"
 	"strings"
 	"text/template"
+
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 type APIServer struct {
@@ -20,6 +22,7 @@ func NewAPIServer(db *Storage, listenPort string) (*APIServer, error) {
 }
 
 func (s *APIServer) Start() {
+
 	router := http.NewServeMux()
 	router.HandleFunc("GET /", makeFrontendHandler(s.handleHome))
 	router.HandleFunc("GET /recipe/{id}", makeFrontendHandler(s.handleViewRecipeByID))
@@ -31,8 +34,10 @@ func (s *APIServer) Start() {
 	router.HandleFunc("PUT /v1/recipes/{id}", makeHandler(s.handleUpdateRecipeByID))
 	router.HandleFunc("DELETE /v1/recipes/{id}", makeHandler(s.handleDeleteRecipeByID))
 
+	router.Handle("GET /metrics", promhttp.Handler())
 	log.Println("Server listening on address", s.listenPort)
-	log.Println(http.ListenAndServe(s.listenPort, router))
+
+	log.Println(http.ListenAndServe(s.listenPort, prometheusMiddleware(router)))
 }
 
 // Frontend handlers
